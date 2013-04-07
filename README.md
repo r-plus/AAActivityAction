@@ -1,6 +1,7 @@
 ## AAActivityAction
 
 AAActivityAction is Reeder like ActionSheet. Method architecture is inspired by `UIActivity` and `UIActivityViewController`.
+
 ![https://dl.dropbox.com/u/149268/AA.png](https://dl.dropbox.com/u/149268/AA.png)
 
 ### Installation
