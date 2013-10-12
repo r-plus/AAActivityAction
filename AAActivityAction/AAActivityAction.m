@@ -44,7 +44,8 @@
 
 const CGFloat kTitleHeight = 45.0f;
 const CGFloat kPanelViewBottomMargin = 5.0f;
-const CGFloat kPanelViewSideMargin = 20.0f;
+const CGFloat kPanelViewSideMargin = 10.0f;
+const CGFloat kPageDotHeight = 20.0f;
 
 #pragma mark InternalGetter
 
@@ -113,6 +114,25 @@ const CGFloat kPanelViewSideMargin = 20.0f;
         _panelView = [[AAPanelView alloc] initWithFrame:baseRect];
         _panelView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
         _panelView.transform = CGAffineTransformMakeScale(1.0, 0.1);
+        
+        CGRect scrollViewRect = CGRectInset(_panelView.bounds, 10, 5);
+        scrollViewRect.size.height -= kTitleHeight - kPageDotHeight;
+        _scrollView = [[UIScrollView alloc] initWithFrame:scrollViewRect];
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _scrollView.contentSize = _panelView.bounds.size;
+        [_panelView addSubview:_scrollView];
+        
+        CGRect pageRect = scrollViewRect;
+        _pageControl = [[UIPageControl alloc] initWithFrame:pageRect];
+        _pageControl.numberOfPages = 1;
+        [_pageControl addTarget:self action:@selector(pageControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+        [_panelView addSubview:_pageControl];
+        
         [baseView addSubview:_panelView];
         [UIView animateWithDuration:0.1 animations:^ {
             _panelView.transform = CGAffineTransformIdentity;
@@ -129,6 +149,7 @@ const CGFloat kPanelViewSideMargin = 20.0f;
     CGFloat y = 0;
     NSUInteger count = 0;
     CGFloat activityWidth = self.activityWidth;
+    
     for (AAActivity *activity in activities) {
         count++;
         // icon layout by -[self layoutSubviews];
@@ -165,7 +186,7 @@ const CGFloat kPanelViewSideMargin = 20.0f;
         label.frame = frame;
         [button addSubview:label];
         
-        [_panelView addSubview:button];
+        [_scrollView addSubview:button];
     }
 }
 
@@ -193,22 +214,44 @@ const CGFloat kPanelViewSideMargin = 20.0f;
     //// re-layouting panelView.
     NSUInteger rowsCount = [self numberOfRowFromCount:[_activities count]];
     CGFloat height = self.rowHeight * rowsCount + kTitleHeight;
+    while (height >= _panelView.superview.bounds.size.height - 40.0f) {
+        rowsCount--;
+        height = self.rowHeight * rowsCount + kTitleHeight;
+    }
     _panelView.frame = CGRectMake(0, _panelView.superview.frame.size.height - height - kPanelViewBottomMargin, _panelView.superview.frame.size.width, height);
+    _pageControl.frame = CGRectMake(0, _panelView.frame.size.height - kPanelViewBottomMargin - kTitleHeight, _panelView.frame.size.width, kPageDotHeight);
     
     //// re-layouting activities.
     CGFloat x = 0;
     CGFloat y = 0;
     NSUInteger count = 0;
+    NSUInteger page = 0;
+    NSUInteger numberOfActivitiesInPage = rowsCount * [self numberOfActivitiesInRow];
     CGFloat activityWidth = self.activityWidth;
-    CGFloat spaceWidth = (_panelView.frame.size.width - (activityWidth * self.numberOfActivitiesInRow) - (2 * kPanelViewSideMargin)) / (self.numberOfActivitiesInRow - 1);
-    for (UIButton *button in _panelView.subviews) {
+    CGFloat spaceWidth = (_scrollView.frame.size.width - (activityWidth * self.numberOfActivitiesInRow) - (2 * kPanelViewSideMargin)) / (self.numberOfActivitiesInRow - 1);
+    for (UIButton *button in _scrollView.subviews) {
         count++;
         // FIXME: more clean and easy readable code.
-        x = kPanelViewSideMargin + (activityWidth + spaceWidth) * (CGFloat)(count % self.numberOfActivitiesInRow == 0 ? self.numberOfActivitiesInRow - 1 : count % self.numberOfActivitiesInRow - 1);
-        y = kPanelViewSideMargin + self.rowHeight * ([self numberOfRowFromCount:count] - 1);
+        x = page * _scrollView.frame.size.width + kPanelViewSideMargin + (activityWidth + spaceWidth) * (CGFloat)(count % self.numberOfActivitiesInRow == 0 ? self.numberOfActivitiesInRow - 1 : count % self.numberOfActivitiesInRow - 1);
+        y = 15.0f + self.rowHeight * ([self numberOfRowFromCount:count - page * numberOfActivitiesInPage] - 1);
         
         button.frame = CGRectMake(x, y, activityWidth, activityWidth);
+
+        if (count % numberOfActivitiesInPage == 0 && count != [[_scrollView subviews] count]) {
+            page++;
+        }
     }
+    
+    _scrollView.contentSize = CGSizeMake((page + 1) * _scrollView.frame.size.width, _scrollView.frame.size.height);
+    _pageControl.numberOfPages = page + 1;
+    if (_pageControl.numberOfPages <= 1) {
+        _pageControl.hidden = YES;
+        _scrollView.scrollEnabled = NO;
+    } else {
+        _pageControl.hidden = NO;
+        _scrollView.scrollEnabled = YES;
+    }
+    [self pageControlValueChanged:_pageControl];
 }
 
 #pragma mark Appearence
@@ -249,6 +292,45 @@ const CGFloat kPanelViewSideMargin = 20.0f;
         }];
         _isShowing = NO;
     }
+}
+
+// REActivityView.h
+// REActivityViewController
+//
+// Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    _pageControl.currentPage = scrollView.contentOffset.x / scrollView.frame.size.width;
+}
+
+#pragma mark -
+
+- (void)pageControlValueChanged:(UIPageControl *)pageControl
+{
+    CGFloat pageWidth = _scrollView.contentSize.width /_pageControl.numberOfPages;
+    CGFloat x = _pageControl.currentPage * pageWidth;
+    [_scrollView scrollRectToVisible:CGRectMake(x, 0, pageWidth, _scrollView.frame.size.height) animated:YES];
 }
 
 @end

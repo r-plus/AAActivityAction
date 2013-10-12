@@ -34,8 +34,8 @@
     UIImage *image = [UIImage imageNamed:(imageSize == AAImageSizeSmall ? @"Safari-Small.png" : @"Safari.png")];
     NSMutableArray *array = [NSMutableArray array];
     
-    for (int i=0; i<8; i++) {
-        AAActivity *activity = [[AAActivity alloc] initWithTitle:@"Safari"
+    for (int i=0; i<15; i++) {
+        AAActivity *activity = [[AAActivity alloc] initWithTitle:[@"Safari" stringByAppendingFormat:@"%d", i]
                                                            image:image
                                                      actionBlock:^(AAActivity *activity, NSArray *activityItems) {
             NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);

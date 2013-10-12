@@ -32,12 +32,15 @@ typedef enum AAImageSize : NSUInteger {
     AAImageSizeiPad = 74
 } AAImageSize;
 
-@interface AAActivityAction : UIView {
+@interface AAActivityAction : UIView <UIScrollViewDelegate> {
 @private;
     NSArray *_activityItems;
     NSArray *_activities;
     AAImageSize _imageSize;
     AAPanelView *_panelView;
+    UIScrollView *_scrollView;
+    UIPageControl *_pageControl;
+
 }
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign, readonly) BOOL isShowing;
