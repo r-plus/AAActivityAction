@@ -233,6 +233,7 @@ const CGFloat kPanelViewSideMargin = 20.0f;
 - (void)showInView:(UIView *)view
 {
     _panelView.title = self.title;
+    _panelView.delegate = self;
     self.frame = view.bounds;
     [view addSubview:self];
     _isShowing = YES;

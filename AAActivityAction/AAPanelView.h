@@ -27,4 +27,5 @@
 
 @interface AAPanelView : UIView
 @property (strong, nonatomic) NSString *title;
+@property (weak, nonatomic) id delegate;
 @end

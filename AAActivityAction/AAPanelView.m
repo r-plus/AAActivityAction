@@ -161,6 +161,13 @@
     CGContextSetRGBFillColor(context, 0.7f, 0.7f, 0.7f, 1.0f);
     [self.title drawInRect:titleRect withFont:font lineBreakMode:MIDDLE_TRUNCATE alignment:ALIGN_CENTER];
     
+    // Add title tap to dissmiss
+    UIButton *titleTapToDissmissControl = [[UIButton alloc] initWithFrame:titleRect];
+    titleTapToDissmissControl.backgroundColor = [UIColor clearColor];
+    titleTapToDissmissControl.showsTouchWhenHighlighted = YES;
+    [titleTapToDissmissControl addTarget:self.delegate action:@selector(dismissActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:titleTapToDissmissControl];
+
     //// Cleanup
     CGGradientRelease(lineGradient);
     CGColorSpaceRelease(colorSpace);

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>646BFCAD-39CF-401C-BBEA-D589A003079B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>AAActivityActionDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>ACD19A11-9F94-48F8-BC74-46401F4B74E3</key>
+		<string>ssh://github.com/r-plus/AAActivityAction.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AAActivityActionDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>ACD19A11-9F94-48F8-BC74-46401F4B74E3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/r-plus/AAActivityAction.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ACD19A11-9F94-48F8-BC74-46401F4B74E3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ACD19A11-9F94-48F8-BC74-46401F4B74E3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AAActivityAction</string>
+		</dict>
+	</array>
+</dict>
+</plist>
