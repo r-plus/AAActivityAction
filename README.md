@@ -16,7 +16,7 @@ not registerted yet.
 
 ### Requirement
 
-* iOS 4 or higher.
+* iOS 5 or higher.
 * `QuartzCore` framework.
 * ARC.
 
