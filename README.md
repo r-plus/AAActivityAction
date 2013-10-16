@@ -7,7 +7,7 @@ AAActivityAction is Reeder like ActionSheet. Method architecture is inspired by 
 ### Installation
 
 #### CocoaPods
-not registerted yet.
+Add `pod 'AAActivityAction'` to your Podfile.
 
 #### Manually
 
