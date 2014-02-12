@@ -24,6 +24,7 @@
 // THE SOFTWARE.
 
 #import "AAPanelView.h"
+#import "AAActivityAction.h"
 
 #ifdef __IPHONE_6_0
 # define ALIGN_CENTER NSTextAlignmentCenter

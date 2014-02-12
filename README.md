@@ -1,4 +1,4 @@
-## AAActivityAction
+## AAActivityAction [![build](https://travis-ci.org/r-plus/AAActivityAction.png?branch=master)](https://travis-ci.org/r-plus/AAActivityAction)
 
 AAActivityAction is Reeder like ActionSheet. Method architecture is inspired by `UIActivity` and `UIActivityViewController`.
 
@@ -7,7 +7,7 @@ AAActivityAction is Reeder like ActionSheet. Method architecture is inspired by 
 ### Installation
 
 #### CocoaPods
-not registerted yet.
+Add `pod 'AAActivityAction'` to your Podfile.
 
 #### Manually
 
