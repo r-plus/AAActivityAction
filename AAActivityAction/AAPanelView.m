@@ -163,8 +163,17 @@
     else
         strSize = [self.title sizeWithFont:font];
     CGRect titleRect = CGRectMake(panelFrame.origin.x + 10.0, panelFrame.size.height - 15.0, panelFrame.size.width - 20.0, strSize.height);
-    CGContextSetRGBFillColor(context, 0.7, 0.7, 0.7, 1.0);
-    [self.title drawInRect:titleRect withFont:font lineBreakMode:MIDDLE_TRUNCATE alignment:ALIGN_CENTER];
+    if (kCFCoreFoundationVersionNumber >= 847.20) {
+        // iOS 7+
+        UIColor *fontColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+        textStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        textStyle.alignment = NSTextAlignmentCenter;
+        [self.title drawInRect:titleRect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:fontColor, NSParagraphStyleAttributeName:textStyle}];
+    } else {
+        CGContextSetRGBFillColor(context, 0.7, 0.7, 0.7, 1.0);
+        [self.title drawInRect:titleRect withFont:font lineBreakMode:MIDDLE_TRUNCATE alignment:ALIGN_CENTER];
+    }
     
     // Add title tap to dissmiss
     UIButton *titleTapToDissmissControl = [[UIButton alloc] initWithFrame:titleRect];
