@@ -146,8 +146,8 @@
     
     //// Upper line of title
     UIBezierPath *titleSeparateLinePath = [UIBezierPath bezierPath];
-    [titleSeparateLinePath moveToPoint:CGPointMake(CGRectGetMaxX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0f)];
-    [titleSeparateLinePath addLineToPoint:CGPointMake(CGRectGetMinX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0f)];
+    [titleSeparateLinePath moveToPoint:CGPointMake(CGRectGetMaxX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0)];
+    [titleSeparateLinePath addLineToPoint:CGPointMake(CGRectGetMinX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0)];
     [titleSeparateLinePath closePath];
     CGContextSetShadowWithColor(context, CGSizeMake(0, -1), 0, [UIColor blackColor].CGColor);
     [[UIColor colorWithWhite:0.7 alpha:0.3] setStroke];
@@ -155,10 +155,14 @@
     [titleSeparateLinePath stroke];
     
     //// Draw title
-    UIFont *font = [UIFont systemFontOfSize:12.0f];
-    CGSize strSize = [self.title sizeWithFont:font];
-    CGRect titleRect = CGRectMake(panelFrame.origin.x + 10.0f, panelFrame.size.height - 15.0f, panelFrame.size.width - 20.0f, strSize.height);
-    CGContextSetRGBFillColor(context, 0.7f, 0.7f, 0.7f, 1.0f);
+    UIFont *font = [UIFont systemFontOfSize:12.0];
+    CGSize strSize;
+    if ([self.title respondsToSelector:@selector(sizeWithAttributes:)])
+        strSize = [self.title sizeWithAttributes:@{NSFontAttributeName:font}];
+    else
+        strSize = [self.title sizeWithFont:font];
+    CGRect titleRect = CGRectMake(panelFrame.origin.x + 10.0, panelFrame.size.height - 15.0, panelFrame.size.width - 20.0, strSize.height);
+    CGContextSetRGBFillColor(context, 0.7, 0.7, 0.7, 1.0);
     [self.title drawInRect:titleRect withFont:font lineBreakMode:MIDDLE_TRUNCATE alignment:ALIGN_CENTER];
     
     // Add title tap to dissmiss
