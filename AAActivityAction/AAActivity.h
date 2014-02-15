@@ -29,8 +29,8 @@
 
 typedef void (^AAActionBlock)(AAActivity *activity, NSArray *avtivityItems);
 
-@property (strong, readonly, nonatomic) NSString *title;
-@property (strong, readonly, nonatomic) UIImage *image;
+@property (readonly, nonatomic) NSString *title;
+@property (readonly, nonatomic) UIImage *image;
 @property (strong, nonatomic) id userInfo;
 @property (copy, nonatomic) AAActionBlock actionBlock;
 

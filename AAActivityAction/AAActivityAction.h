@@ -32,18 +32,9 @@ typedef enum AAImageSize : NSUInteger {
     AAImageSizeiPad = 74
 } AAImageSize;
 
-@interface AAActivityAction : UIView <UIScrollViewDelegate> {
-@private;
-    NSArray *_activityItems;
-    NSArray *_activities;
-    AAImageSize _imageSize;
-    AAPanelView *_panelView;
-    UIScrollView *_scrollView;
-    UIPageControl *_pageControl;
-
-}
+@interface AAActivityAction : UIView <UIScrollViewDelegate>
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, assign, readonly) BOOL isShowing;
+@property (nonatomic, readonly) BOOL isShowing;
 
 - (id)initWithActivityItems:(NSArray *)activityItems applicationActivities:(NSArray *)applicationActivities imageSize:(AAImageSize)imageSize;
 // Attempt automatically use top of hierarchy view.

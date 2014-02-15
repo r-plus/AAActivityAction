@@ -31,8 +31,8 @@
 {
     self = [super init];
     if (self) {
-        _title = title;
-        _image = image;
+        _title = [title copy];
+        _image = [image copy];
         _actionBlock = [actionBlock copy];
     }
     return self;

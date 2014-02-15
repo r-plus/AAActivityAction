@@ -35,17 +35,25 @@
 #endif
 
 @interface AAActivityAction()
-@property (nonatomic, assign, readonly) CGFloat activityWidth;
-@property (nonatomic, assign, readonly) CGFloat rowHeight;
-@property (nonatomic, assign, readonly) NSUInteger numberOfActivitiesInRow;
+@property (nonatomic, readonly) CGFloat activityWidth;
+@property (nonatomic, readonly) CGFloat rowHeight;
+@property (nonatomic, readonly) NSUInteger numberOfActivitiesInRow;
 @end
 
 @implementation AAActivityAction
+{
+    NSArray *_activityItems;
+    NSArray *_activities;
+    AAImageSize _imageSize;
+    AAPanelView *_panelView;
+    UIScrollView *_scrollView;
+    UIPageControl *_pageControl;
+}
 
-const CGFloat kTitleHeight = 45.0f;
-const CGFloat kPanelViewBottomMargin = 5.0f;
-const CGFloat kPanelViewSideMargin = 10.0f;
-const CGFloat kPageDotHeight = 20.0f;
+static CGFloat const kTitleHeight = 45.0f;
+static CGFloat const kPanelViewBottomMargin = 5.0f;
+static CGFloat const kPanelViewSideMargin = 10.0f;
+static CGFloat const kPageDotHeight = 20.0f;
 
 #pragma mark InternalGetter
 
