@@ -32,6 +32,7 @@ AAActivityAction *activityAction = [[AAActivityAction alloc] initWithActivityIte
                                                              applicationActivities:@[activity]
                                                                          imageSize:AAImageSizeSmall];
 activityAction.title = @"sample title";
+activityAction.directActionEnabled = YES; // If available only one activity, directly invoke its activity action. default is NO.
 [activityAction show];
 // or showInView
 // [activityAction showInView:view];

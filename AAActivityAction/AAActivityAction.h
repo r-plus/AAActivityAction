@@ -35,6 +35,7 @@ typedef enum AAImageSize : NSUInteger {
 @interface AAActivityAction : UIView <UIScrollViewDelegate>
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, readonly) BOOL isShowing;
+@property (nonatomic, getter=isDirectActionEnabled) BOOL directActionEnabled; // If available only one activity, directly invoke its activity action. default is NO.
 
 - (id)initWithActivityItems:(NSArray *)activityItems applicationActivities:(NSArray *)applicationActivities imageSize:(AAImageSize)imageSize;
 // Attempt automatically use top of hierarchy view.

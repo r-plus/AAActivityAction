@@ -95,6 +95,8 @@ static CGFloat const kPageDotHeight = 20.0f;
 {
     self = [super initWithFrame:[UIScreen mainScreen].bounds];
     if (self) {
+        _directActionEnabled = NO;
+        
         // Forced resize to iPad size on iPad.
         _imageSize = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? AAImageSizeiPad : imageSize;
         
@@ -283,6 +285,12 @@ static CGFloat const kPageDotHeight = 20.0f;
 
 - (void)showInView:(UIView *)view
 {
+    if (self.isDirectActionEnabled && _activities.count == 1) {
+        UIButton *button = [[UIButton alloc] init];
+        button.tag = 0;
+        [self invokeActivity:button];
+        return;
+    }
     _panelView.title = [self.title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     _panelView.delegate = self;
     self.frame = view.bounds;

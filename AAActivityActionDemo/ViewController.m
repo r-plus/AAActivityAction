@@ -34,7 +34,7 @@
     UIImage *image = [UIImage imageNamed:(imageSize == AAImageSizeSmall ? @"Safari-Small.png" : @"Safari.png")];
     NSMutableArray *array = [NSMutableArray array];
     
-    for (int i=0; i<15; i++) {
+    for (int i=0; i<1; i++) {
         AAActivity *activity = [[AAActivity alloc] initWithTitle:[@"Safari" stringByAppendingFormat:@"%d", i]
                                                            image:image
                                                      actionBlock:^(AAActivity *activity, NSArray *activityItems) {
@@ -48,6 +48,7 @@
                                                      applicationActivities:array
                                                                  imageSize:imageSize];
     aa.title = @"sample title";
+    //aa.directActionEnabled = YES;
     [aa show];
 }
 
