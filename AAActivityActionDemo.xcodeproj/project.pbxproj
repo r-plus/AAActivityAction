@@ -22,6 +22,7 @@
 		0A018EF21707FB2200A4181E /* AAActivityAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A018EEE1707FB2200A4181E /* AAActivityAction.m */; };
 		0A018EF31707FB2200A4181E /* AAPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A018EF01707FB2200A4181E /* AAPanelView.m */; };
 		0A018EF51707FB3B00A4181E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A018EF41707FB3B00A4181E /* QuartzCore.framework */; };
+		0A27D7B419E1073200569480 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A27D7B319E1073200569480 /* LaunchScreen.xib */; };
 		0A4B9DF0170DEBA7004F3A6F /* Safari-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4B9DED170DEBA7004F3A6F /* Safari-Small@2x.png */; };
 		0A4B9DF1170DEBA7004F3A6F /* Safari@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4B9DEE170DEBA7004F3A6F /* Safari@2x~iphone.png */; };
 		0A4B9DF2170DEBA7004F3A6F /* Safari@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4B9DEF170DEBA7004F3A6F /* Safari@2x~ipad.png */; };
@@ -51,6 +52,7 @@
 		0A018EEF1707FB2200A4181E /* AAPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPanelView.h; sourceTree = "<group>"; };
 		0A018EF01707FB2200A4181E /* AAPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPanelView.m; sourceTree = "<group>"; };
 		0A018EF41707FB3B00A4181E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0A27D7B319E1073200569480 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		0A4B9DED170DEBA7004F3A6F /* Safari-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari-Small@2x.png"; sourceTree = "<group>"; };
 		0A4B9DEE170DEBA7004F3A6F /* Safari@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x~iphone.png"; sourceTree = "<group>"; };
 		0A4B9DEF170DEBA7004F3A6F /* Safari@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x~ipad.png"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				0A018EDC1707FA2800A4181E /* ViewController.h */,
 				0A018EDD1707FA2800A4181E /* ViewController.m */,
 				0A018EDF1707FA2800A4181E /* ViewController.xib */,
+				0A27D7B319E1073200569480 /* LaunchScreen.xib */,
 				0A018ECB1707FA2800A4181E /* Supporting Files */,
 			);
 			path = AAActivityActionDemo;
@@ -201,6 +204,7 @@
 				0A018EE11707FA2800A4181E /* ViewController.xib in Resources */,
 				0A4B9DF0170DEBA7004F3A6F /* Safari-Small@2x.png in Resources */,
 				0A4B9DF1170DEBA7004F3A6F /* Safari@2x~iphone.png in Resources */,
+				0A27D7B419E1073200569480 /* LaunchScreen.xib in Resources */,
 				0A4B9DF2170DEBA7004F3A6F /* Safari@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

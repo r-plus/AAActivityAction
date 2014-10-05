@@ -52,7 +52,7 @@
 
 static CGFloat const kTitleHeight = 45.0f;
 static CGFloat const kPanelViewBottomMargin = 5.0f;
-static CGFloat const kPanelViewSideMargin = 10.0f;
+static CGFloat const kPanelViewSideMargin = 5.0f;
 static CGFloat const kPageDotHeight = 20.0f;
 
 #pragma mark InternalGetter
