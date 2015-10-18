@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "AAActivityAction"
-  s.version       = "1.0.2"
+  s.version       = "1.0.3"
   s.summary       = "Reeder like action sheet."
   s.homepage      = "https://github.com/r-plus/AAActivityAction/"
   s.license       = 'MIT'
