@@ -272,9 +272,12 @@ static CGFloat const kPageDotHeight = 20.0f;
     // But not perfect fix for all case.
     UIWindow *keyboardWindow = nil;
     for (UIWindow *testWindow in [UIApplication sharedApplication].windows) {
-        if (![[testWindow class] isEqual:[UIWindow class]]) {
+        if ([[testWindow class] isEqual:NSClassFromString(@"UIRemoteKeyboardWindow")]) {
+            // since iOS 9.
             keyboardWindow = testWindow;
             break;
+        } else if (![[testWindow class] isEqual:[UIWindow class]]) {
+            keyboardWindow = testWindow;
         }
     }
     

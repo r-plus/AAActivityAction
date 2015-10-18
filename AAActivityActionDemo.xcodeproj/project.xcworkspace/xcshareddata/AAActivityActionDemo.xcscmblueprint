@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D41F84C92795051529D34F566C8CACB6175C2460",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D41F84C92795051529D34F566C8CACB6175C2460" : 0,
+    "0053177785D1C94D7E39804658917C4DF905FCB1" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "646BFCAD-39CF-401C-BBEA-D589A003079B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D41F84C92795051529D34F566C8CACB6175C2460" : "AAActivityAction\/",
+    "0053177785D1C94D7E39804658917C4DF905FCB1" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AAActivityActionDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AAActivityActionDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:r_plus\/activityaction.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0053177785D1C94D7E39804658917C4DF905FCB1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:r-plus\/AAActivityAction.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D41F84C92795051529D34F566C8CACB6175C2460"
+    }
+  ]
+}
