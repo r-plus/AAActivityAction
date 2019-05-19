@@ -26,14 +26,6 @@
 #import "AAPanelView.h"
 #import "AAActivityAction.h"
 
-#ifdef __IPHONE_6_0
-# define ALIGN_CENTER NSTextAlignmentCenter
-# define MIDDLE_TRUNCATE NSLineBreakByTruncatingMiddle
-#else
-# define ALIGN_CENTER UITextAlignmentCenter
-# define MIDDLE_TRUNCATE UILineBreakModeMiddleTruncation
-#endif
-
 @implementation AAPanelView
 
 - (id)initWithFrame:(CGRect)frame
@@ -157,24 +149,14 @@
     
     //// Draw title
     UIFont *font = [UIFont systemFontOfSize:12.0];
-    CGSize strSize;
-    if ([self.title respondsToSelector:@selector(sizeWithAttributes:)])
-        strSize = [self.title sizeWithAttributes:@{NSFontAttributeName:font}];
-    else
-        strSize = [self.title sizeWithFont:font];
+    CGSize strSize = [self.title sizeWithAttributes:@{NSFontAttributeName:font}];
     CGRect titleRect = CGRectMake(panelFrame.origin.x + 10.0, panelFrame.size.height - 15.0, panelFrame.size.width - 20.0, strSize.height);
-    if (kCFCoreFoundationVersionNumber >= 847.20) {
-        // iOS 7+
-        UIColor *fontColor = [UIColor colorWithWhite:0.7 alpha:1.0];
-        NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-        textStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
-        textStyle.alignment = NSTextAlignmentCenter;
-        [self.title drawInRect:titleRect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:fontColor, NSParagraphStyleAttributeName:textStyle}];
-    } else {
-        CGContextSetRGBFillColor(context, 0.7, 0.7, 0.7, 1.0);
-        [self.title drawInRect:titleRect withFont:font lineBreakMode:MIDDLE_TRUNCATE alignment:ALIGN_CENTER];
-    }
-    
+    UIColor *fontColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    textStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    textStyle.alignment = NSTextAlignmentCenter;
+    [self.title drawInRect:titleRect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:fontColor, NSParagraphStyleAttributeName:textStyle}];
+
     // Add title tap to dissmiss
     UIButton *titleTapToDissmissControl = [[UIButton alloc] initWithFrame:titleRect];
     titleTapToDissmissControl.backgroundColor = [UIColor clearColor];

@@ -16,7 +16,7 @@ Add `pod 'AAActivityAction'` to your Podfile.
 
 ### Requirement
 
-* iOS 5 or higher.
+* iOS 11 or higher.
 * `QuartzCore` framework.
 * ARC.
 

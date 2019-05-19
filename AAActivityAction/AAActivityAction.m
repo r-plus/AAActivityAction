@@ -28,12 +28,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#ifdef __IPHONE_6_0
-# define ALIGN_CENTER NSTextAlignmentCenter
-#else
-# define ALIGN_CENTER UITextAlignmentCenter
-#endif
-
 @interface AAActivityAction()
 @property (nonatomic, readonly) CGFloat activityWidth;
 @property (nonatomic, readonly) CGFloat rowHeight;
@@ -145,7 +139,7 @@ static CGFloat const kPageDotHeight = 20.0f;
         
         [baseView addSubview:_panelView];
         [UIView animateWithDuration:0.1 animations:^ {
-            _panelView.transform = CGAffineTransformIdentity;
+            self->_panelView.transform = CGAffineTransformIdentity;
         }];
         
         [self addActivities:_activities];
@@ -176,7 +170,7 @@ static CGFloat const kPageDotHeight = 20.0f;
         button.showsTouchWhenHighlighted = _imageSize == AAImageSizeSmall ? YES : NO;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, activity.image.size.height + 2.0f, activityWidth, 10.0f)];
-        label.textAlignment = ALIGN_CENTER;
+        label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];
         //label.backgroundColor = [UIColor redColor];
         label.textColor = [UIColor whiteColor];
@@ -305,7 +299,7 @@ static CGFloat const kPageDotHeight = 20.0f;
 {
     if (self.isShowing) {
         [UIView animateWithDuration:0.1 animations:^ {
-            _panelView.transform = CGAffineTransformMakeScale(1.0, 0.2);
+            self->_panelView.transform = CGAffineTransformMakeScale(1.0, 0.2);
         } completion:^ (BOOL finished){
             [self removeFromSuperview];
         }];
