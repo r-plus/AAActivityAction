@@ -118,7 +118,7 @@ static CGFloat const kPageDotHeight = 20.0f;
         _panelView = [[AAPanelView alloc] initWithFrame:baseRect];
         _panelView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
         _panelView.transform = CGAffineTransformMakeScale(1.0, 0.1);
-        
+
         CGRect scrollViewRect = CGRectInset(_panelView.bounds, 10, 5);
         scrollViewRect.size.height -= kTitleHeight - kPageDotHeight;
         _scrollView = [[UIScrollView alloc] initWithFrame:scrollViewRect];
@@ -218,11 +218,11 @@ static CGFloat const kPageDotHeight = 20.0f;
     //// re-layouting panelView.
     NSUInteger rowsCount = [self numberOfRowFromCount:[_activities count]];
     CGFloat height = self.rowHeight * rowsCount + kTitleHeight;
-    while (height >= _panelView.superview.bounds.size.height - 40.0f) {
+    while (height >= _panelView.superview.bounds.size.height - 40.0f - self.safeAreaInsets.top) {
         rowsCount--;
         height = self.rowHeight * rowsCount + kTitleHeight;
     }
-    _panelView.frame = CGRectMake(0, _panelView.superview.frame.size.height - height - kPanelViewBottomMargin, _panelView.superview.frame.size.width, height);
+    _panelView.frame = CGRectMake(self.safeAreaInsets.left, _panelView.superview.frame.size.height - height - kPanelViewBottomMargin - self.safeAreaInsets.bottom, _panelView.superview.frame.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right, height);
     _pageControl.frame = CGRectMake(0, _panelView.frame.size.height - kPanelViewBottomMargin - kTitleHeight, _panelView.frame.size.width, kPageDotHeight);
     
     //// re-layouting activities.
