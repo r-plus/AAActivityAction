@@ -73,7 +73,7 @@ static CGFloat const kPageDotHeight = 20.0f;
     if (_panelView)
         return (_panelView.frame.size.width - 2 * kPanelViewSideMargin) / self.activityWidth;
     BOOL isLandscape = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
-    return ((isLandscape ? self.bounds.size.height : self.bounds.size.width) - 2 * kPanelViewSideMargin) / self.activityWidth;
+    return ((isLandscape ? self.bounds.size.height - self.safeAreaInsets.bottom : self.bounds.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right) - 2 * kPanelViewSideMargin) / self.activityWidth;
 }
 
 - (NSUInteger)numberOfRowFromCount:(NSUInteger)count
@@ -209,8 +209,17 @@ static CGFloat const kPageDotHeight = 20.0f;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    [self updatePanelViewWidth];
     [self layoutActivities];
     [_panelView setNeedsDisplay];
+}
+
+- (void)updatePanelViewWidth
+{
+    // Firstly update panelView width for correctly calculate `numberOfRowFromCount`.
+    CGRect f = _panelView.frame;
+    f.size.width = _panelView.superview.frame.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right;
+    _panelView.frame = f;
 }
 
 - (void)layoutActivities
@@ -218,11 +227,17 @@ static CGFloat const kPageDotHeight = 20.0f;
     //// re-layouting panelView.
     NSUInteger rowsCount = [self numberOfRowFromCount:[_activities count]];
     CGFloat height = self.rowHeight * rowsCount + kTitleHeight;
-    while (height >= _panelView.superview.bounds.size.height - 40.0f - self.safeAreaInsets.top) {
+    while (height >= _panelView.superview.bounds.size.height - 40.0f - self.safeAreaInsets.bottom - self.safeAreaInsets.top) {
         rowsCount--;
         height = self.rowHeight * rowsCount + kTitleHeight;
     }
-    _panelView.frame = CGRectMake(self.safeAreaInsets.left, _panelView.superview.frame.size.height - height - kPanelViewBottomMargin - self.safeAreaInsets.bottom, _panelView.superview.frame.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right, height);
+    CGRect panelFrame = CGRectMake(
+        self.safeAreaInsets.left,
+        _panelView.superview.frame.size.height - height - kPanelViewBottomMargin - self.safeAreaInsets.bottom,
+        _panelView.frame.size.width, // width is already updated.
+        height
+    );
+    _panelView.frame = panelFrame;
     _pageControl.frame = CGRectMake(0, _panelView.frame.size.height - kPanelViewBottomMargin - kTitleHeight, _panelView.frame.size.width, kPageDotHeight);
     
     //// re-layouting activities.
